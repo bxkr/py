@@ -1,4 +1,4 @@
-def print_a1z26(*combination):
+def print_a1z26(*combination: int):
     alphabet = list(map(chr, range(ord('a'), ord('z')+1)))
     for number in combination:
         if number > 0:
