@@ -30,5 +30,5 @@ def zeros(x_size: int, y_size: int = 0) -> Matrix:
 
 
 if __name__ == '__main__':
-    print(zeros(3))
+    print(zeros(3), end='\n\n')
     print(Matrix(3, 3, 9, ranged=True))
