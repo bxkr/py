@@ -9,14 +9,19 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Build
-        run: python buildWeb.py
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Build
+      run: python buildWeb.py
+    - name: Upload outputs
+      uses: actions/upload-artifact@v2
+      with:
+        name: outputs
+        path: html/outputs.js
   scp:
     name: Copy
     runs-on: ubuntu-latest
@@ -24,6 +29,12 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@master
+    - name: Download a single artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: outputs
+    - name: Copy artifact to dist dir
+      run: cp outputs.js html/outputs.js
     - name: Copying
       uses: appleboy/scp-action@master
       with:
