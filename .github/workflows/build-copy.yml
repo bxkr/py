@@ -1,0 +1,35 @@
+name: Build and Copy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Build
+        run: python buildWeb.py
+  scp:
+    name: Copy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: Copying
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.CHOST }}
+        username: ${{ secrets.CUSERNAME }}
+        password: ${{ secrets.CPASSWORD }}
+        source: html
+        target: ${{ secrets.CPATH }}
+        overwrite: true

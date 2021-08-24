@@ -1,0 +1,29 @@
+#title {
+    margin: 1%;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+#outputs {
+    display: flex;
+    flex-wrap: wrap;
+}
+.code {
+    margin: .5%;
+    color: white;
+    background-color: dodgerblue;
+    padding: .8%;
+    min-width: 10vw;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.1);
+}
+
+.filename {
+    color: black;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: white;
+    min-width: max-content;
+    font-family: sans-serif;
+    font-size: .8em;
+}
